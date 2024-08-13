@@ -162,14 +162,14 @@ class ChickiTokenizerFast(PreTrainedTokenizerFast):
         tokenizer_file (`str`, *optional*):
             Chemin vers le fichier [tokenizers](https://github.com/huggingface/tokenizers) (a généralement une extension .json) qui
             contient tout ce qui est nécessaire pour charger le tokenizer.
-        unk_token (`str`, *optional*, par défaut `"<|endoftext|>"`):
+        unk_token (`str`, *optional*, par défaut `"<|findutexte|>"`):
             Le jeton inconnu. Un jeton qui n'est pas dans le vocabulaire ne peut pas être converti en ID et est défini comme ce
             jeton à la place. Ne s'applique pas à ce tokenizer.
         bos_token (`str`, *optional*):
             Le jeton de début de séquence. Non applicable pour ce tokenizer.
-        eos_token (`str`, *optional*, defaults to `"<|endoftext|>"`):
+        eos_token (`str`, *optional*, defaults to `"<|findutexte|>"`):
             Le jeton de fin de séquence.
-        pad_token (`str`, *optional*, defaults to `"<|endoftext|>"`):
+        pad_token (`str`, *optional*, defaults to `"<|findutexte|>"`):
             Le jeton utilisé pour le remplissage, par exemple lors du regroupement de séquences de différentes longueurs.
 
     Construct a "fast" Chicki tokenizer (backed by HuggingFace's *tokenizers* library). Based on byte-level
@@ -201,14 +201,14 @@ class ChickiTokenizerFast(PreTrainedTokenizerFast):
         tokenizer_file (`str`, *optional*):
             Path to [tokenizers](https://github.com/huggingface/tokenizers) file (generally has a .json extension) that
             contains everything needed to load the tokenizer.
-        unk_token (`str`, *optional*, defaults to `"<|endoftext|>"`):
+        unk_token (`str`, *optional*, defaults to `"<|findutexte|>"`):
             The unknown token. A token that is not in the vocabulary cannot be converted to an ID and is set to be this
             token instead. Not applicable to this tokenizer.
         bos_token (`str`, *optional*):
             The beginning of sequence token. Not applicable for this tokenizer.
-        eos_token (`str`, *optional*, defaults to `"<|endoftext|>"`):
+        eos_token (`str`, *optional*, defaults to `"<|findutexte|>"`):
             The end of sequence token.
-        pad_token (`str`, *optional*, defaults to `"<|endoftext|>"`):
+        pad_token (`str`, *optional*, defaults to `"<|findutexte|>"`):
             The token used for padding, for example when batching sequences of different lengths.
     """
 
@@ -221,10 +221,10 @@ class ChickiTokenizerFast(PreTrainedTokenizerFast):
         vocab_file=None,
         merges_file=None,
         tokenizer_file=None,
-        unk_token="<|endoftext|>",
+        unk_token="<|findutexte|>",
         bos_token=None,
-        eos_token="<|endoftext|>",
-        pad_token="<|endoftext|>",
+        eos_token="<|findutexte|>",
+        pad_token="<|findutexte|>",
         **kwargs,
     ):
         # Nous devons au moins passer vocab_file et merges_file à la classe de base
