@@ -242,22 +242,22 @@ class ChickiTokenizer(PreTrainedTokenizer):
         errors (`str`, *optional*, defaults to `"replace"`):
             Paradigme à suivre lors du décodage d'octets en UTF-8. Voir
             [bytes.decode](https://docs.python.org/3/library/stdtypes.html#bytes.decode) pour plus d'informations.
-        unk_token (`str`, *optional*, defaults to `"<|endoftext|>"`):
+        unk_token (`str`, *optional*, defaults to `"<|findutexte|>"`):
             Le jeton inconnu. Un jeton qui n'est pas dans le vocabulaire ne peut pas être converti en ID et est défini comme ce
             jeton à la place.
         bos_token (`str`, *optional*):
             Le jeton de début de séquence. Non applicable pour ce tokenizer.
-        eos_token (`str`, *optional*, defaults to `"<|endoftext|>"`):
+        eos_token (`str`, *optional*, defaults to `"<|findutexte|>"`):
             Le jeton de fin de séquence.
-        pad_token (`str`, *optional*, defaults to `"<|endoftext|>"`):
+        pad_token (`str`, *optional*, defaults to `"<|findutexte|>"`):
             Le jeton utilisé pour le remplissage, par exemple lors du regroupement de séquences de longueurs différentes.
         clean_up_tokenization_spaces (`bool`, *optional*, defaults to `False`):
             Indique si le modèle doit ou non nettoyer les espaces qui ont été ajoutés lors du fractionnement du texte d'entrée pendant le
             processus de tokenisation. Non applicable à ce tokenizer, car la tokenisation n'ajoute pas d'espaces.
         split_special_tokens (`bool`, *optional*, defaults to `False`):
             Indique si les jetons spéciaux doivent ou non être fractionnés pendant le processus de tokenisation. Le comportement par défaut est
-            de ne pas fractionner les jetons spéciaux. Cela signifie que si `<|endoftext|>` est le `eos_token`, alors `tokenizer.tokenize("<|endoftext|>") =
-            ['<|endoftext|>`]. Sinon, si `split_special_tokens=True`, alors `tokenizer.tokenize("<|endoftext|>")` donnera `['<',
+            de ne pas fractionner les jetons spéciaux. Cela signifie que si `<|findutexte|>` est le `eos_token`, alors `tokenizer.tokenize("<|findutexte|>") =
+            ['<|findutexte|>`]. Sinon, si `split_special_tokens=True`, alors `tokenizer.tokenize("<|findutexte|>")` donnera `['<',
             '|', 'endo', 'ft', 'ext', '|', '>']`. Cet argument n'est pris en charge que pour les tokenizers `slow` pour le moment.
 
 
@@ -291,22 +291,22 @@ class ChickiTokenizer(PreTrainedTokenizer):
         errors (`str`, *optional*, defaults to `"replace"`):
             Paradigm to follow when decoding bytes to UTF-8. See
             [bytes.decode](https://docs.python.org/3/library/stdtypes.html#bytes.decode) for more information.
-        unk_token (`str`, *optional*, defaults to `"<|endoftext|>"`):
+        unk_token (`str`, *optional*, defaults to `"<|findutexte|>"`):
             The unknown token. A token that is not in the vocabulary cannot be converted to an ID and is set to be this
             token instead.
         bos_token (`str`, *optional*):
             The beginning of sequence token. Not applicable for this tokenizer.
-        eos_token (`str`, *optional*, defaults to `"<|endoftext|>"`):
+        eos_token (`str`, *optional*, defaults to `"<|findutexte|>"`):
             The end of sequence token.
-        pad_token (`str`, *optional*, defaults to `"<|endoftext|>"`):
+        pad_token (`str`, *optional*, defaults to `"<|findutexte|>"`):
             The token used for padding, for example when batching sequences of different lengths.
         clean_up_tokenization_spaces (`bool`, *optional*, defaults to `False`):
             Whether or not the model should cleanup the spaces that were added when splitting the input text during the
             tokenization process. Not applicable to this tokenizer, since tokenization does not add spaces.
         split_special_tokens (`bool`, *optional*, defaults to `False`):
             Whether or not the special tokens should be split during the tokenization process. The default behavior is
-            to not split special tokens. This means that if `<|endoftext|>` is the `eos_token`, then `tokenizer.tokenize("<|endoftext|>") =
-            ['<|endoftext|>`]. Otherwise, if `split_special_tokens=True`, then `tokenizer.tokenize("<|endoftext|>")` will be give `['<',
+            to not split special tokens. This means that if `<|findutexte|>` is the `eos_token`, then `tokenizer.tokenize("<|findutexte|>") =
+            ['<|findutexte|>`]. Otherwise, if `split_special_tokens=True`, then `tokenizer.tokenize("<|findutexte|>")` will be give `['<',
             '|', 'endo', 'ft', 'ext', '|', '>']`. This argument is only supported for `slow` tokenizers for the moment.
     """
 
@@ -318,10 +318,10 @@ class ChickiTokenizer(PreTrainedTokenizer):
         vocab_file,
         merges_file,
         errors="replace",
-        unk_token="<|endoftext|>",
+        unk_token="<|findutexte|>",
         bos_token=None,
-        eos_token="<|endoftext|>",
-        pad_token="<|endoftext|>",
+        eos_token="<|findutexte|>",
+        pad_token="<|findutexte|>",
         clean_up_tokenization_spaces=False,
         split_special_tokens=False,
         **kwargs,
