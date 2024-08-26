@@ -87,7 +87,7 @@ FORCE_TF_AVAILABLE = os.environ.get("FORCE_TF_AVAILABLE", "AUTO").upper()
 # This is the version of torch required to run torch.fx features and torch.onnx with dictionary inputs.
 TORCH_FX_REQUIRED_VERSION = version.parse("1.10")
 
-ACCELERATE_MIN_VERSION = "0.21.0"
+ACCELERATE_MIN_VERSION = "0.26.0"
 FSDP_MIN_VERSION = "1.12.0"
 XLA_FSDPV2_MIN_VERSION = "2.2.0"
 
@@ -172,10 +172,12 @@ _tf2onnx_available = _is_package_available("tf2onnx")
 _timm_available = _is_package_available("timm")
 _tokenizers_available = _is_package_available("tokenizers")
 _torchaudio_available = _is_package_available("torchaudio")
+_torchao_available = _is_package_available("torchao")
 _torchdistx_available = _is_package_available("torchdistx")
 _torchvision_available = _is_package_available("torchvision")
 _mlx_available = _is_package_available("mlx")
 _hqq_available = _is_package_available("hqq")
+_liger_kernel_available = _is_package_available("liger_kernel")
 
 
 _torch_version = "N/A"
@@ -677,6 +679,29 @@ def is_torch_mlu_available(check_device=False):
     return hasattr(torch, "mlu") and torch.mlu.is_available()
 
 
+@lru_cache()
+def is_torch_musa_available(check_device=False):
+    "Checks if `torch_musa` is installed and potentially if a MUSA is in the environment"
+    if not _torch_available or importlib.util.find_spec("torch_musa") is None:
+        return False
+
+    import torch
+    import torch_musa  # noqa: F401
+
+    torch_musa_min_version = "0.33.0"
+    if _accelerate_available and version.parse(_accelerate_version) < version.parse(torch_musa_min_version):
+        return False
+
+    if check_device:
+        try:
+            # Will raise a RuntimeError if no MUSA is found
+            _ = torch.musa.device_count()
+            return torch.musa.is_available()
+        except RuntimeError:
+            return False
+    return hasattr(torch, "musa") and torch.musa.is_available()
+
+
 def is_torchdynamo_available():
     if not is_torch_available():
         return False
@@ -1069,6 +1094,10 @@ def is_torchaudio_available():
     return _torchaudio_available
 
 
+def is_torchao_available():
+    return _torchao_available
+
+
 def is_speech_available():
     # For now this depends on torchaudio but the exact dependency might evolve in the future.
     return _torchaudio_available
@@ -1134,6 +1163,13 @@ def is_jinja_available():
 
 def is_mlx_available():
     return _mlx_available
+
+
+def is_liger_kernel_available():
+    if not _liger_kernel_available:
+        return False
+
+    return version.parse(importlib.metadata.version("liger_kernel")) >= version.parse("0.1.0")
 
 
 # docstyle-ignore
